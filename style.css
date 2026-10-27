@@ -1,13 +1,173 @@
 #joystick-cursor {
-    position: fixed;
+    position: fixed !important;
+    box-sizing: border-box !important;
     width: 20px;
     height: 20px;
-    background-color: rgba(0, 123, 255, 0.8);
-    border: 2px solid white;
-    border-radius: 50%;
-    z-index: 99999;
-    pointer-events: none;
-    top: 0;
-    left: 0;
-    transform: translate(-100px, -100px); /* Start off-screen */
+    margin-left: -10px;
+    margin-top: -10px;
+    background-color: rgba(0, 123, 255, 0.85) !important;
+    border: 2px solid white !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5) !important;
+    z-index: 2147483647 !important;
+    pointer-events: none !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: translate(-100px, -100px);
+    transition: background-color 0.1s ease, box-shadow 0.1s ease;
+    opacity: 1 !important;
+}
+
+#joystick-cursor.joystick-cursor-clicking {
+    background-color: rgba(40, 167, 69, 0.95) !important;
+    box-shadow: 0 0 12px rgba(40, 167, 69, 0.9) !important;
+}
+
+.joystick-hover-target {
+    outline: 3px solid #007bff !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6) !important;
+}
+
+/* Floating On-Screen Keyboard Launcher Pill */
+#joystick-osk-launcher {
+    position: fixed !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    background-color: #007bff !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+    border-radius: 24px !important;
+    padding: 8px 16px !important;
+    font-family: sans-serif !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45) !important;
+    z-index: 2147483645 !important;
+    user-select: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+#joystick-osk-launcher.joystick-osk-launcher-hidden {
+    display: none !important;
+}
+
+/* On-Screen Keyboard (OSK) */
+#joystick-osk {
+    position: fixed !important;
+    left: 50% !important;
+    bottom: 12px !important;
+    top: auto !important;
+    transform: translateX(-50%) !important;
+    width: min(780px, 96vw) !important;
+    background-color: rgba(30, 32, 38, 0.97) !important;
+    border: 2px solid #007bff !important;
+    border-radius: 12px !important;
+    padding: 10px !important;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65) !important;
+    z-index: 2147483646 !important;
+    display: none !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    font-family: sans-serif !important;
+    user-select: none !important;
+    box-sizing: border-box !important;
+}
+
+#joystick-osk.joystick-osk-visible {
+    display: flex !important;
+}
+
+#joystick-osk.joystick-osk-top {
+    bottom: auto !important;
+    top: 12px !important;
+}
+
+#joystick-osk-preview {
+    background-color: #23252c !important;
+    color: #e9ecef !important;
+    border: 1px solid #495057 !important;
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    font-size: 15px !important;
+    min-height: 28px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+}
+
+#joystick-osk-preview-text {
+    font-weight: bold !important;
+    color: #66b2ff !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    max-width: 80% !important;
+}
+
+#joystick-osk-preview-hint {
+    font-size: 12px !important;
+    color: #adb5bd !important;
+}
+
+.joystick-osk-row {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    width: 100% !important;
+}
+
+.joystick-osk-key {
+    flex: 1 1 0 !important;
+    min-height: 44px !important;
+    background-color: #3a3d46 !important;
+    color: #ffffff !important;
+    border: 1px solid #5a5f6d !important;
+    border-radius: 7px !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 4px 8px !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+    transition: background-color 0.1s ease, transform 0.05s ease !important;
+    box-sizing: border-box !important;
+}
+
+.joystick-osk-key:hover,
+.joystick-osk-key.joystick-hover-target {
+    background-color: #007bff !important;
+    border-color: #ffffff !important;
+}
+
+.joystick-osk-key:active {
+    transform: scale(0.96) !important;
+}
+
+.joystick-osk-key-wide {
+    flex: 1.8 1 0 !important;
+    font-size: 15px !important;
+    background-color: #484c57 !important;
+}
+
+.joystick-osk-key-space {
+    flex: 4 1 0 !important;
+    font-size: 16px !important;
+}
+
+.joystick-osk-key-active {
+    background-color: #28a745 !important;
+    border-color: #ffffff !important;
+}
+
+.joystick-osk-key-close {
+    background-color: #dc3545 !important;
+    border-color: #ff6b7a !important;
 }

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Joystick Universal Controller",
-  "version": "15.0",
-  "description": "Control webpages and Chrome with a joystick.",
+  "version": "15.2",
+  "description": "Accessible browser and webpage controller for joysticks and gamepads. Move the cursor, click, fill forms, scroll, and switch tabs.",
   "permissions": [
     "tabs",
     "offscreen",
@@ -21,6 +21,8 @@
   ],
   "options_page": "options.html",
   "icons": {
-    "48": "icon.png"
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
   }
 }

@@ -3,42 +3,102 @@
 <head>
     <title>Joystick Configuration</title>
     <style>
-        body { font-family: sans-serif; background-color: #2a2a2e; color: white; padding: 20px; }
-        h1, h2 { border-bottom: 1px solid #555; padding-bottom: 10px; }
-        .action { display: flex; align-items: center; margin: 15px 0; font-size: 1.1em; }
-        .action-label { width: 150px; }
-        .action select { background-color: #3d3d42; color: white; border: 1px solid #555; padding: 8px; border-radius: 5px; }
-        .button-display { display: inline-block; width: 150px; font-weight: bold; background-color: #3d3d42; padding: 8px; border-radius: 5px; text-align: center; }
-        .action button { margin-left: 10px; padding: 8px 15px; cursor: pointer; }
-        #add-action-btn { background-color: #28a745; color: white; border: none; }
-        .remove-btn { background-color: #dc3545; color: white; border: none; }
-        #status { margin-top: 20px; font-style: italic; color: #ffc107; height: 20px; }
+        body { font-family: sans-serif; background-color: #2a2a2e; color: white; padding: 20px; max-width: 720px; }
+        h1, h2 { border-bottom: 1px solid #555; padding-bottom: 10px; margin-top: 28px; }
+        .action { display: flex; align-items: center; margin: 15px 0; font-size: 1.05em; }
+        .action-label { width: 170px; }
+        .action select { background-color: #3d3d42; color: white; border: 1px solid #555; padding: 8px; border-radius: 5px; width: 190px; }
+        .button-display { display: inline-block; width: 140px; font-weight: bold; background-color: #3d3d42; padding: 8px; border-radius: 5px; text-align: center; margin-left: 10px; }
+        .action button { margin-left: 10px; padding: 8px 14px; cursor: pointer; border-radius: 4px; border: 1px solid #555; background-color: #444; color: white; }
+        .action button:hover { background-color: #555; }
+        .clear-btn { background-color: #5a353a !important; border-color: #dc3545 !important; }
+        .slider-row { display: flex; align-items: center; margin: 15px 0; font-size: 1.05em; }
+        .slider-row input[type="range"] { width: 220px; margin: 0 12px; cursor: pointer; }
+        .slider-value { font-weight: bold; min-width: 50px; background-color: #3d3d42; padding: 5px 10px; border-radius: 5px; text-align: center; }
+        .checkbox-row { display: flex; align-items: center; gap: 12px; margin: 15px 0; font-size: 1.05em; cursor: pointer; }
+        .checkbox-row input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; }
+        .controls-row { margin-top: 15px; display: flex; gap: 10px; }
+        #add-action-btn { background-color: #28a745; color: white; border: none; padding: 8px 15px; cursor: pointer; border-radius: 4px; }
+        #reset-defaults-btn { background-color: #6c757d; color: white; border: none; padding: 8px 15px; cursor: pointer; border-radius: 4px; }
+        .remove-btn { background-color: #dc3545 !important; color: white; border: none !important; }
+        #status { margin-top: 20px; font-style: italic; color: #ffc107; height: 24px; }
     </style>
 </head>
 <body>
     <h1>Joystick Configuration</h1>
-    <p>Assign joystick buttons to browser and page actions.</p>
+    <p>Assign joystick buttons and axes to browser and page actions.</p>
     
     <h2>Core Actions</h2>
     <div class="action">
         <div class="action-label">Next Tab:</div>
         <button data-action="NEXT_TAB_BUTTON">Set</button> 
-        <div class="button-display" id="NEXT_TAB_BUTTON_display">Not Set</div>
+        <div class="button-display" id="NEXT_TAB_BUTTON_display">Button 5</div>
+        <button class="clear-btn" data-clear-action="NEXT_TAB_BUTTON">Clear</button>
     </div>
     <div class="action">
         <div class="action-label">Previous Tab:</div>
         <button data-action="PREV_TAB_BUTTON">Set</button> 
-        <div class="button-display" id="PREV_TAB_BUTTON_display">Not Set</div>
+        <div class="button-display" id="PREV_TAB_BUTTON_display">Button 4</div>
+        <button class="clear-btn" data-clear-action="PREV_TAB_BUTTON">Clear</button>
     </div>
     <div class="action">
         <div class="action-label">Refresh Page:</div>
         <button data-action="REFRESH_BUTTON">Set</button> 
-        <div class="button-display" id="REFRESH_BUTTON_display">Not Set</div>
+        <div class="button-display" id="REFRESH_BUTTON_display">Button 10</div>
+        <button class="clear-btn" data-clear-action="REFRESH_BUTTON">Clear</button>
     </div>
 
     <h2>Page Actions</h2>
     <div id="custom-actions-container"></div>
-    <button id="add-action-btn">+ Add New Page Action</button>
+    <div class="controls-row">
+        <button id="add-action-btn">+ Add New Page Action</button>
+        <button id="reset-defaults-btn">Reset to Defaults</button>
+    </div>
+
+    <h2>On-Screen Keyboard (Optional)</h2>
+    <label class="checkbox-row">
+        <input type="checkbox" id="ENABLE_OSK_checkbox" checked>
+        <span>Automatically show On-Screen Keyboard when selecting a text field</span>
+    </label>
+
+    <h2>Joystick Axis &amp; Sensitivity Settings</h2>
+    <div class="action">
+        <div class="action-label">Cursor X-Axis:</div>
+        <button data-axis="MOUSE_X_AXIS">Set Axis</button>
+        <div class="button-display" id="MOUSE_X_AXIS_display">Axis 6</div>
+    </div>
+    <div class="action">
+        <div class="action-label">Cursor Y-Axis:</div>
+        <button data-axis="MOUSE_Y_AXIS">Set Axis</button>
+        <div class="button-display" id="MOUSE_Y_AXIS_display">Axis 7</div>
+    </div>
+    <div class="action">
+        <div class="action-label">Analog Scroll Axis:</div>
+        <button data-axis="SCROLL_Y_AXIS">Set Axis</button>
+        <div class="button-display" id="SCROLL_Y_AXIS_display">Not Set</div>
+        <button class="clear-btn" data-clear-axis="SCROLL_Y_AXIS">Clear</button>
+    </div>
+
+    <div class="slider-row">
+        <div class="action-label">Cursor Speed:</div>
+        <input type="range" id="CURSOR_SPEED_slider" min="1" max="40" step="1" value="2">
+        <span class="slider-value" id="CURSOR_SPEED_value">2</span>
+    </div>
+    <div class="slider-row">
+        <div class="action-label">Cursor Size:</div>
+        <input type="range" id="CURSOR_SIZE_slider" min="8" max="60" step="2" value="20">
+        <span class="slider-value" id="CURSOR_SIZE_value">20px</span>
+    </div>
+    <div class="slider-row">
+        <div class="action-label">Scroll Speed:</div>
+        <input type="range" id="SCROLL_SPEED_slider" min="5" max="60" step="1" value="20">
+        <span class="slider-value" id="SCROLL_SPEED_value">20</span>
+    </div>
+    <div class="slider-row">
+        <div class="action-label">Stick Deadzone:</div>
+        <input type="range" id="DEADZONE_slider" min="0.05" max="0.50" step="0.05" value="0.20">
+        <span class="slider-value" id="DEADZONE_value">0.20</span>
+    </div>
 
     <div id="status"></div>
 
@@ -46,13 +106,21 @@
         <div class="action">
             <select class="action-select">
                 <option value="click">Click</option>
+                <option value="toggle_keyboard">Toggle On-Screen Keyboard</option>
+                <option value="next_field">Next Form Field</option>
+                <option value="prev_field">Previous Form Field</option>
+                <option value="right_click">Right-Click</option>
                 <option value="scroll_up">Scroll Up</option>
                 <option value="scroll_down">Scroll Down</option>
                 <option value="copy">Copy Text</option>
                 <option value="paste">Paste Text</option>
                 <option value="cut">Cut Text</option>
                 <option value="undo">Undo</option>
-                <option value="rescan">Re-scan Page</option>
+                <option value="go_back">Navigate Back</option>
+                <option value="go_forward">Navigate Forward</option>
+                <option value="new_tab">New Tab</option>
+                <option value="close_tab">Close Tab</option>
+                <option value="rescan">Re-scan / Center Cursor</option>
             </select>
             <button class="set-btn">Set Button</button>
             <div class="button-display">Not Set</div>
