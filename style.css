@@ -1,0 +1,13 @@
+#joystick-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 123, 255, 0.8);
+    border: 2px solid white;
+    border-radius: 50%;
+    z-index: 99999;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    transform: translate(-100px, -100px); /* Start off-screen */
+}

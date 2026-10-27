@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Joystick Universal Controller",
+  "version": "15.0",
+  "description": "Control webpages and Chrome with a joystick.",
+  "permissions": [
+    "tabs",
+    "offscreen",
+    "storage",
+    "clipboardRead"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["style.css"]
+    }
+  ],
+  "options_page": "options.html",
+  "icons": {
+    "48": "icon.png"
+  }
+}

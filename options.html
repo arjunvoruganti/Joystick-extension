@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Joystick Configuration</title>
+    <style>
+        body { font-family: sans-serif; background-color: #2a2a2e; color: white; padding: 20px; }
+        h1, h2 { border-bottom: 1px solid #555; padding-bottom: 10px; }
+        .action { display: flex; align-items: center; margin: 15px 0; font-size: 1.1em; }
+        .action-label { width: 150px; }
+        .action select { background-color: #3d3d42; color: white; border: 1px solid #555; padding: 8px; border-radius: 5px; }
+        .button-display { display: inline-block; width: 150px; font-weight: bold; background-color: #3d3d42; padding: 8px; border-radius: 5px; text-align: center; }
+        .action button { margin-left: 10px; padding: 8px 15px; cursor: pointer; }
+        #add-action-btn { background-color: #28a745; color: white; border: none; }
+        .remove-btn { background-color: #dc3545; color: white; border: none; }
+        #status { margin-top: 20px; font-style: italic; color: #ffc107; height: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Joystick Configuration</h1>
+    <p>Assign joystick buttons to browser and page actions.</p>
+    
+    <h2>Core Actions</h2>
+    <div class="action">
+        <div class="action-label">Next Tab:</div>
+        <button data-action="NEXT_TAB_BUTTON">Set</button> 
+        <div class="button-display" id="NEXT_TAB_BUTTON_display">Not Set</div>
+    </div>
+    <div class="action">
+        <div class="action-label">Previous Tab:</div>
+        <button data-action="PREV_TAB_BUTTON">Set</button> 
+        <div class="button-display" id="PREV_TAB_BUTTON_display">Not Set</div>
+    </div>
+    <div class="action">
+        <div class="action-label">Refresh Page:</div>
+        <button data-action="REFRESH_BUTTON">Set</button> 
+        <div class="button-display" id="REFRESH_BUTTON_display">Not Set</div>
+    </div>
+
+    <h2>Page Actions</h2>
+    <div id="custom-actions-container"></div>
+    <button id="add-action-btn">+ Add New Page Action</button>
+
+    <div id="status"></div>
+
+    <template id="action-template">
+        <div class="action">
+            <select class="action-select">
+                <option value="click">Click</option>
+                <option value="scroll_up">Scroll Up</option>
+                <option value="scroll_down">Scroll Down</option>
+                <option value="copy">Copy Text</option>
+                <option value="paste">Paste Text</option>
+                <option value="cut">Cut Text</option>
+                <option value="undo">Undo</option>
+                <option value="rescan">Re-scan Page</option>
+            </select>
+            <button class="set-btn">Set Button</button>
+            <div class="button-display">Not Set</div>
+            <button class="remove-btn">Remove</button>
+        </div>
+    </template>
+
+    <script src="options.js"></script>
+</body>
+</html>
